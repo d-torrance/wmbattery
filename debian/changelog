@@ -1,3 +1,23 @@
+wmbattery (2.45) UNRELEASED; urgency=medium
+
+  * New maintainer (Closes: #756544).
+  * debian/control
+    - Bump Standards-Version to 3.9.5, no changes required.
+    - Add Vcs-Browser.
+    - Update Vcs-Git.
+    - Switch Build-Depends from autoconf to dh-autoreconf.
+  * debian/rules
+    - Switch to use dh-autoreconf.
+    - Remove announcedir target.
+  * debian/source/format
+    - New file; use 3.0 (native).
+  * wmbattery.1x
+    - Escape hyphen.
+  * wmbattery.c
+    - Move assignment of old_status until after cur_info is initialized.
+
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Sat, 06 Sep 2014 23:47:19 -0500
+
 wmbattery (2.44) unstable; urgency=medium
 
   * Better AC detection.
