@@ -1,0 +1,10 @@
+*.o
+autom4te.cache
+config.*
+configure
+debian/autoreconf.*
+debian/files
+debian/wmbattery*
+makeinfo
+wmbattery
+*~
