@@ -1,14 +1,17 @@
-wmbattery (2.44+20140921-1) UNRELEASED; urgency=medium
+wmbattery (2.44+20140921-1) unstable; urgency=medium
 
   * New maintainer (Closes: #756544).
   * Switch from native to non-native package.
   * New upstream release (git snapshot).
   * debian/control
-    - Bump Standards-Version to 3.9.5, no changes required.
+    - Bump Standards-Version to 3.9.6, no changes required.
     - Add Vcs-Browser.
-    - Update Vcs-Git.
+    - Update Homepage and Vcs-Git.
     - Switch Build-Depends from autoconf to dh-autoreconf.
     - Remove unnecessary Build-Depends dpkg-dev and libxt-dev.
+  * debian/copyright
+    - Add Upstream-*.
+    - Update Source.
   * debian/rules
     - Switch to use dh-autoreconf.
     - Remove announcedir target.
