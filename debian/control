@@ -4,9 +4,9 @@ Priority: extra
 Build-Depends: debhelper (>= 9), libxext-dev, libxpm-dev, dh-autoreconf, libapm-dev, libupower-glib-dev
 Maintainer: Doug Torrance <dtorrance@monmouthcollege.edu>
 Standards-Version: 3.9.5
+Homepage: http://windowmaker.org/dockapps/?name=wmbattery
 Vcs-Browser: https://github.com/d-torrance/wmbattery
 Vcs-Git: https://github.com/d-torrance/wmbattery.git
-Homepage: http://kitenet.net/~joey/code/wmbattery/
 
 Package: wmbattery
 Architecture: any
