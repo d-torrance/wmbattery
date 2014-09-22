@@ -1,3 +1,11 @@
 #!/usr/bin/make -f
 %:
 	dh $@ --with autoreconf
+
+get-orig-source:
+	uscan --verbose --force-download
+	@if test -e ../wmbattery-*.download ; then \
+		rename -fv "s/wmbattery-(.+)\.download/wmbattery_\1\.orig\.tar\.gz/" \
+			../wmbattery-*.download; \
+	fi
+
