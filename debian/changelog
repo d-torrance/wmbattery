@@ -1,4 +1,4 @@
-wmbattery (2.44+20140921-1) unstable; urgency=medium
+wmbattery (2.44+git20140921-1) unstable; urgency=medium
 
   * New maintainer (Closes: #756544).
   * Switch from native to non-native package.
@@ -34,22 +34,21 @@ wmbattery (2.44) unstable; urgency=medium
 
 wmbattery (2.43) unstable; urgency=low
 
-  * Orphan package. It will probably be removed as it does not work with
-    current kernels.
+  * Orphan package. It will probably be removed as it does
+    not work with current kernels.
   * Add -i to display as icon. Thanks, Tovar (Closes: #732398).
 
  -- Joey Hess <joeyh@debian.org>  Tue, 27 May 2014 16:01:34 -0400
 
 wmbattery (2.42) unstable; urgency=medium
 
-  * Stop building with flash-in-the-pan HAL. Instead update acpi
+  * Stop building with flash-in-the-pan HAL. Instead update ACPI
     interface to use /sys/class/power_supply.
     Note that this needs acpica_version 20011018 (Closes: #613166).
-    (Patch developed by Andrew Shadura.)
+    Patch by Andrew Shadura.
   * Also add support for upower, which is used by default,
     to avoid chasing kernel sysfs changes (Closes: #727102).
-    (Patch developed by Andrew Shadura.)
-
+    Patch by Andrew Shadura.
 
  -- Joey Hess <joeyh@debian.org>  Thu, 05 Dec 2013 15:29:41 -0400
 
@@ -63,13 +62,13 @@ wmbattery (2.40) unstable; urgency=low
 
   * Add -s option which can be used to ignore fluctuations
     in reported battery charge (as seen on the EeePC) when
-    using -e (Closes: #527870). (Patch by Joseph Huang.)
+    using -e (Closes: #527870). Patch by Joseph Huang.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 09 May 2009 16:53:10 -0400
 
 wmbattery (2.39) unstable; urgency=low
 
-  * Use debhelper v7; rules file minimisation.
+  * Use debhelper v7; rules file minimization.
   * Depend on hal since /proc/acpi is gone from the default kernels now
     (Closes: #491099).
 
@@ -78,39 +77,39 @@ wmbattery (2.39) unstable; urgency=low
 wmbattery (2.38) unstable; urgency=low
 
   * Magic header file reordering to work around the disgusting
-    linux-libc-dev/libc headers conflicts (#435700) (Closes: #463811).
+    linux-libc-dev/libc headers conflicts, see #435700 (Closes: #463811).
 
  -- Joey Hess <joeyh@debian.org>  Wed, 27 Feb 2008 15:08:53 -0500
 
 wmbattery (2.37) unstable; urgency=low
 
-  * Support reconnecting to dbus if it's restarted. (AKA giant dbus-PITA)
+  * Support reconnecting to DBus daemon if it's restarted.
 
  -- Joey Hess <joeyh@debian.org>  Wed, 20 Feb 2008 22:44:00 -0500
 
 wmbattery (2.36) unstable; urgency=low
 
-  * Support reconnecting to hal if the connection is closed, as happens
-    if the hal is restarted.
+  * Support reconnecting to HAL if the connection is closed, as happens
+    if the HAL daemon is restarted.
 
  -- Joey Hess <joeyh@debian.org>  Wed, 20 Feb 2008 22:29:00 -0500
 
 wmbattery (2.35) unstable; urgency=low
 
-  * Don't spew error messages if optional hal properties are not available.
-  * Only check to see if a battery is charging if hal reports there is AC
+  * Don't spew error messages if optional HAL properties are not available.
+  * Only check to see if a battery is charging if HAL reports there is AC
     power. This is perhaps not 100% correct in systems with multiple batteries
     that may cross-charge when off AC, but it's faster and it avoids bugs in
-    hal (#463740).
+    HAL, see #463740.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 02 Feb 2008 17:28:37 -0500
 
 wmbattery (2.34) unstable; urgency=low
 
   * Stop trying to track the kernel's ever changing interfaces and add support
-    for querying battery information from hal.  Support for the old kernel
+    for querying battery information from HAL. Support for the old kernel
     interfaces (APM, ACPI, etc) is still present, but to use new interfaces such
-    2.6.24's /sys/class/power_adapter, you'll have to have dbus and hal
+    2.6.24's /sys/class/power_adapter, you'll have to have DBus and HAL
     (Closes: #456247, #246641, #290712, #393616, #456248).
   * Fix -e option.
 
@@ -119,8 +118,8 @@ wmbattery (2.34) unstable; urgency=low
 wmbattery (2.33) unstable; urgency=low
 
   * Correct issue with the statically allocated string returned by
-    get_acpi_value that caused it to only look at last full capacity and never
-    really at design capacity.
+    get_acpi_value that caused it to only look at last full capacity
+    and never really at design capacity.
 
  -- Joey Hess <joeyh@debian.org>  Sat, 22 Dec 2007 22:26:38 -0500
 
@@ -128,8 +127,8 @@ wmbattery (2.32) unstable; urgency=low
 
   * Guard some divisions against division by zero. I've never seen that
     happen and can't reproduce it, but see #454766.
-  * Merge acpi change from procmeter3: Limit string length when reading from
-    /proc/.
+  * Merge ACPI change from procmeter3: Limit string length when reading
+    from /proc/.
 
  -- Joey Hess <joeyh@debian.org>  Fri, 07 Dec 2007 14:56:41 -0500
 
@@ -152,20 +151,20 @@ wmbattery (2.30) unstable; urgency=low
 wmbattery (2.29) unstable; urgency=low
 
   * Update to new menu policy.
-  * MOve repository from svn to git.
+  * Move repository from svn to git.
 
  -- Joey Hess <joeyh@debian.org>  Fri, 19 Oct 2007 21:14:22 -0400
 
 wmbattery (2.28) unstable; urgency=low
 
   * Correct off-by-one in acpi.c
-  * Put url to new web page in README.
+  * Put URL to new web page in README.
 
  -- Joey Hess <joeyh@debian.org>  Mon, 04 Jun 2007 16:44:03 -0400
 
 wmbattery (2.27) unstable; urgency=low
 
-  * Minor bug fix to acpi code; don't skip over dotfiles.
+  * Minor bug fix to ACPI code; don't skip over dotfiles.
   * Patch from Vincent Bernat adding support for 2.6.21, which changes
     yet again where the ACPI version number is stored (Closes: #423612).
 
@@ -173,7 +172,7 @@ wmbattery (2.27) unstable; urgency=low
 
 wmbattery (2.26) unstable; urgency=medium
 
-  * Add missing build dep on libxt-dev (Closes: #379247).
+  * Add missing build dependency on libxt-dev (Closes: #379247).
 
  -- Joey Hess <joeyh@debian.org>  Tue, 25 Jul 2006 22:00:41 -0400
 
@@ -201,7 +200,7 @@ wmbattery (2.23) unstable; urgency=low
 
 wmbattery (2.22) unstable; urgency=low
 
-  * Fix acpi detection, the code to read /proc/acpi/info was not updated
+  * Fix ACPI detection, the code to read /proc/acpi/info was not updated
     to the new cd-less code (Closes: #307278).
 
  -- Joey Hess <joeyh@debian.org>  Mon,  2 May 2005 18:14:01 -0400
@@ -217,8 +216,7 @@ wmbattery (2.21) unstable; urgency=low
 wmbattery (2.20) unstable; urgency=low
 
   * Patch from Kris Verbeeck to add a -a option to play an au file
-    on low battery.
-  * Document it in the man page.
+    on low battery, document it in the man page.
   * Unicode dash fixes on man page.
   * Some indentation fixes.
 
@@ -226,7 +224,7 @@ wmbattery (2.20) unstable; urgency=low
 
 wmbattery (2.19) unstable; urgency=low
 
-  * Use the proper new-style acpi string when looking for ac adaptor status
+  * Use the proper new-style ACPI string when looking for AC adaptor status
     (Closes: #220039).
   * Remove the hack I added for my old picturebook, as it causes bad results
     on systems that label a fully charged battery's charging rate as
@@ -235,7 +233,7 @@ wmbattery (2.19) unstable; urgency=low
     last full capacity. Some batteries may exceed previous last full on
     their next charging, and this also lets you see when you have a damaged
     battery that is not fully charging.
-  * If acpi battery charging state is unknown, but the rate is 0,
+  * If ACPI battery charging state is unknown, but the rate is 0,
     then the battery is charged and on AC power, and the unknown state can
     be ignored. Analysis and patch by "TeXitoi".
 
@@ -243,14 +241,14 @@ wmbattery (2.19) unstable; urgency=low
 
 wmbattery (2.18) unstable; urgency=low
 
-  * Sort devices returned by readdir in acpi, since the order can be random
+  * Sort devices returned by readdir in ACPI, since the order can be random
     (Closes: #204721).
 
  -- Joey Hess <joeyh@debian.org>  Wed, 13 Aug 2003 01:45:55 -0400
 
 wmbattery (2.17) unstable; urgency=low
 
-  * Make acpi code put -1 in the time remaining field if the "present rate"
+  * Make ACPI code put -1 in the time remaining field if the "present rate"
     is 0 (Closes: #204722).
   * Enable internal time estimate code in this case.
 
@@ -262,7 +260,7 @@ wmbattery (2.16) unstable; urgency=low
     estimates for systems that lack them. The estimates are on by default,
     though they're only linear guesses and may not be accurate.
   * Display dimmed time estimate field if there is no estimate available.
-  * -e switch renamed to -r and forces both estimates on.
+  * Rename -e switch to -r and force both estimates on.
 
  -- Joey Hess <joeyh@debian.org>  Thu,  7 Aug 2003 16:41:37 -0400
 
@@ -278,7 +276,7 @@ wmbattery (2.15) unstable; urgency=low
 
 wmbattery (2.14) unstable; urgency=low
 
-  * Set the cutoff point for old acpi to 20020214 (was 20020208)
+  * Set the cutoff point for old ACPI to 20020214 (was 20020208)
     (Closes: #202083).
 
  -- Joey Hess <joeyh@debian.org>  Sun, 20 Jul 2003 13:44:59 +0200
@@ -298,24 +296,24 @@ wmbattery (2.12) unstable; urgency=low
 
 wmbattery (2.11) unstable; urgency=low
 
-  * Corrected inverted test to see if ac power is online, that was only called
+  * Correct inverted test to see if AC power is online, that was only called
     on 2 battery systems (Closes: #152356).
 
  -- Joey Hess <joeyh@debian.org>  Wed, 10 Jul 2002 16:10:40 -0400
 
 wmbattery (2.10) unstable; urgency=low
 
-  * Deal with acpi putting nothing but "Present: no" in the info file for the
-    second battery of a thinkpad. This was with kernel 2.4.19-pre10
+  * Deal with ACPI putting nothing but "Present: no" in the info file for the
+    second battery of a Thinkpad. This was with kernel 2.4.19-pre10
     (Closes: #149715).
-  * Moved DEB_BUILD_OPTIONS out of makeinfo.
-  * Updated to new autoconf.
+  * Move DEB_BUILD_OPTIONS out of makeinfo.
+  * Update to new autoconf.
 
  -- Joey Hess <joeyh@debian.org>  Tue, 11 Jun 2002 22:51:45 -0400
 
 wmbattery (2.09) unstable; urgency=low
 
-  * Moved makefile stuff out of makeinfo, so it is just definitions.
+  * Move makefile stuff out of makeinfo, so it is just definitions.
   * Support DEB_BUILD_OPTIONS.
   * Bump to debhelper v4.
 
@@ -329,29 +327,30 @@ wmbattery (2.08) unstable; urgency=low
 
 wmbattery (2.07) unstable; urgency=low
 
-  * Add symbolic apm info constants to "apm.h", in case they are not in the
-    system <apm.h>.
+  * Add symbolic apm info constants to "apm.h", in case they are
+    not in the system <apm.h>.
   * Put $(LIBS) last at link time.
 
  -- Joey Hess <joeyh@debian.org>  Tue, 23 Apr 2002 11:49:16 -0400
 
 wmbattery (2.06) unstable; urgency=low
 
-  * Deal with -1 time left from apm (no estimate).
+  * Deal with -1 time left from APM (no estimate).
   * Never dim colon, fixes display bug.
 
  -- Joey Hess <joeyh@debian.org>  Mon, 22 Apr 2002 12:30:35 -0400
 
 wmbattery (2.05) unstable; urgency=low
 
-  * (acpi) don't display the rather wacky "- :0" on an almost full battery
+  * Don't display the rather wacky "- :0" on an almost full
+    battery on ACPI systems.
 
  -- Joey Hess <joeyh@debian.org>  Tue,  9 Apr 2002 23:19:35 -0400
 
 wmbattery (2.04) unstable; urgency=low
 
-  * Work around stupid ACPI output format  bug. Critical battery detection
-    now works.
+  * Work around stupid ACPI output format bug. Critical battery
+    detection now works.
 
  -- Joey Hess <joeyh@debian.org>  Mon,  8 Apr 2002 22:49:43 -0400
 
@@ -363,14 +362,14 @@ wmbattery (2.03) unstable; urgency=low
 
 wmbattery (2.02) unstable; urgency=medium
 
-  * Improv acpi interface (also used for procmeter3 module now).
+  * Improve ACPI interface (also used for procmeter3 module now).
   * Fix segfault on non-ACPI systems.
 
  -- Joey Hess <joeyh@debian.org>  Sun,  7 Apr 2002 17:48:41 -0400
 
 wmbattery (2.01) unstable; urgency=low
 
-  * Correct minus sign in bigfont to proper faux-lcd appearance. Also fix
+  * Correct minus sign in bigfont to proper faux-LCD appearance. Also fix
     offset slightly.
 
  -- Joey Hess <joeyh@debian.org>  Fri,  5 Apr 2002 23:34:38 -0500
@@ -382,9 +381,9 @@ wmbattery (2.00) unstable; urgency=low
   * Add -w parameter to configure delay time.
   * Add -c and -l parameters to allow user control of battery low/critical
     percentages.
-  * Use constant defs from apm.h instead of nasty hardcoded numbers.
-  * Made -Wall clean.
-  * Reorg.
+  * Use constant defines from apm.h instead of nasty hardcoded numbers.
+  * Make sources -Wall clean.
+  * Reorganize sources.
   * Remove -s option, just fall back to SPIC if ACPI and APM are not
     available.
 
@@ -392,8 +391,8 @@ wmbattery (2.00) unstable; urgency=low
 
 wmbattery (1.23) unstable; urgency=low
 
-  * Add support for querying for battery status via the sonypi driver, for
-    sony laptops that do not have apm support. This is a stopgap until linux
+  * Add support for querying for battery status via the sonypi driver for
+    Sony laptops that do not have APM support. This is a stop gap until linux
     gets full ACPI support.
 
  -- Joey Hess <joeyh@debian.org>  Thu,  4 Apr 2002 10:25:31 -0500
@@ -401,8 +400,8 @@ wmbattery (1.23) unstable; urgency=low
 wmbattery (1.22) unstable; urgency=low
 
   * Convert to use libapm, instead of the hacked up old version of it
-    used before. This probably breaks wmbattery on the BSD's, for now. The
-    correct fix for the BSD's will be to get support for their apm
+    used before. This probably breaks wmbattery on the BSDs, for now. The
+    correct fix for the BSDs will be to get support for their APM
     implementations into libapm. To that end, I have filed a bug with all the
     code I ripped out (Closes: #100027).
   * The -f option also had to be removed. If libapm does not work right on
@@ -424,7 +423,7 @@ wmbattery (1.20) unstable; urgency=low
 
 wmbattery (1.19) unstable; urgency=low
 
-  * Used two more grey's in the transition between shadow and highlight
+  * Use two more greys in the transition between shadow and highlight
     in the dial. Looks a bit better.
 
  -- Joey Hess <joeyh@debian.org>  Wed,  7 Nov 2001 22:35:37 -0500
@@ -450,7 +449,7 @@ wmbattery (1.17) unstable; urgency=low
 
 wmbattery (1.16) unstable; urgency=low
 
-  * Another patch from Kevin, which allows removal of the
+  * Another patch from Kevin Christen, which allows removal of the
     config.{sub,guess} files and does smarter detection.
 
  -- Joey Hess <joeyh@debian.org>  Mon,  5 Mar 2001 19:49:36 -0800
@@ -470,8 +469,8 @@ wmbattery (1.14) unstable; urgency=low
 
 wmbattery (1.13) unstable; urgency=low
 
-  * Add support for using files other than /proc/apm, via a -f switch.
-    (See bug #69585)
+  * Add support for using files other than /proc/apm, via a -f switch
+    (See bug #69585).
 
  -- Joey Hess <joeyh@debian.org>  Mon, 21 Aug 2000 11:52:21 -0700
 
@@ -483,7 +482,7 @@ wmbattery (1.12) unstable; urgency=low
 
 wmbattery (1.11) unstable; urgency=low
 
-  * Build deps.
+  * Update build dependencies.
 
  -- Joey Hess <joeyh@debian.org>  Sat,  4 Dec 1999 16:56:32 -0800
 
@@ -539,7 +538,7 @@ wmbattery (1.3) unstable; urgency=low
 wmbattery (1.2) unstable; urgency=low
 
   * Patch from Edwin van Ouwerkerk Moria, may make the charging indicator
-    work better on thinkpads.
+    work better on Thinkpads.
 
  -- Joey Hess <joeyh@debian.org>  Thu,  1 Jul 1999 09:58:04 -0700
 
@@ -551,8 +550,7 @@ wmbattery (1.1) unstable; urgency=low
 
 wmbattery (1.0) unstable; urgency=low
 
-  * First release.
-  .
+  * Initial release.
   * Start with wmapm 1.2 sources. Gutted it and cleaned it up extensively
     and turned it into wmbattery.
   * New faceplate and graphics.
