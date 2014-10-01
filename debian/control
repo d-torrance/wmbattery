@@ -9,7 +9,7 @@ Vcs-Browser: https://github.com/d-torrance/wmbattery
 Vcs-Git: https://github.com/d-torrance/wmbattery.git
 
 Package: wmbattery
-Architecture: any
+Architecture: linux-any
 Depends: ${shlibs:Depends}, ${misc:Depends}, upower
 Suggests: wmaker
 Description: display laptop battery info, dockable in WindowMaker
