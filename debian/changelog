@@ -1,17 +1,20 @@
-wmbattery (2.45-1) UNRELEASED; urgency=medium
+wmbattery (2.45-1) unstable; urgency=medium
 
   * New upstream release.
-    - Add -x option to run a command when battery is critical (Closes: #543674)
+    - Add -x option to run a command when battery is critical (Closes: #543674).
   * debian/copyright
     - Update years and contact info for copyright holders.
     - Add section for debian/*.
     - Expand license text.
+  * debian/patches
+    - (escape_manpage_hyphens.patch) Escape hyphens in manpage to avoid
+      hyphen-used-as-minus-sign lintian warning.
   * debian/watch
     - Remove uversionmangle, which was added only to give a high enough version
       number to supersede binNMUs made before the switch from a native to
       non-native package.
 
- -- Doug Torrance <dtorrance@monmouthcollege.edu>  Sun, 05 Oct 2014 16:59:54 -0500
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Sun, 05 Oct 2014 17:45:06 -0500
 
 wmbattery (2.44+git20140921-1) unstable; urgency=medium
 
