@@ -4,19 +4,23 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdint.h>
 
 #include "sonypi.h"
 
 signed int spicfd = -1;
 
-int sonypi_supported (void) {
-	if ((spicfd = open("/dev/sonypi", O_RDWR)) == -1)
+int sonypi_supported(void)
+{
+	spicfd = open("/dev/sonypi", O_RDWR);
+	if (spicfd == -1)
 		return 0;
 	else
 		return 1;
 }
 
-inline int sonypi_ioctl(int ioctlno, void *param) {
+inline int sonypi_ioctl(int ioctlno, void *param)
+{
 	if (ioctl(spicfd, ioctlno, param) < 0)
 		return 0;
 	else
@@ -25,39 +29,37 @@ inline int sonypi_ioctl(int ioctlno, void *param) {
 
 /* Read battery info from sonypi device and shove it into an apm_info
  * struct. */
-int sonypi_read (apm_info *info) {
-	__u8 batflags;
-	__u16 cap, rem;
+int sonypi_read(apm_info *info)
+{
+	uint8_t batflags;
+	uint16_t cap, rem;
 	int havebatt = 0;
-	
+
 	info->using_minutes = info->battery_flags = 0;
-	
-	if (! sonypi_ioctl(SONYPI_IOCGBATFLAGS, &batflags)) {
+
+	if (!sonypi_ioctl(SONYPI_IOCGBATFLAGS, &batflags))
 		return 1;
-	}
 
 	info->ac_line_status = (batflags & SONYPI_BFLAGS_AC) != 0;
 	if (batflags & SONYPI_BFLAGS_B1) {
-		if (! sonypi_ioctl(SONYPI_IOCGBAT1CAP, &cap))
+		if (!sonypi_ioctl(SONYPI_IOCGBAT1CAP, &cap))
 			return 1;
-		if (! sonypi_ioctl(SONYPI_IOCGBAT1REM, &rem))
+		if (!sonypi_ioctl(SONYPI_IOCGBAT1REM, &rem))
 			return 1;
 		havebatt = 1;
-	}
-	else if (batflags & SONYPI_BFLAGS_B2) {
+	} else if (batflags & SONYPI_BFLAGS_B2) {
 		/* Not quite right, if there is a second battery I should
 		 * probably merge the two somehow.. */
-		if (! sonypi_ioctl(SONYPI_IOCGBAT2CAP, &cap))
+		if (!sonypi_ioctl(SONYPI_IOCGBAT2CAP, &cap))
 			return 1;
-		if (! sonypi_ioctl(SONYPI_IOCGBAT2REM, &rem))
+		if (!sonypi_ioctl(SONYPI_IOCGBAT2REM, &rem))
 			return 1;
 		havebatt = 1;
-	}
-	else {
+	} else {
 		info->battery_percentage = 0;
 		info->battery_status = BATTERY_STATUS_ABSENT;
 	}
-	
+
 	if (havebatt) {
 		info->battery_percentage = 100 * rem / cap;
 		/* Guess at whether the battery is charging. */
@@ -66,9 +68,9 @@ int sonypi_read (apm_info *info) {
 			info->battery_status = BATTERY_STATUS_CHARGING;
 		}
 	}
-	
+
 	/* Sadly, there is no way to estimate this. */
 	info->battery_time = 0;
-	
+
 	return 0;
 }

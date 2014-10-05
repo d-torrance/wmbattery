@@ -1,8 +1,11 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(wmbattery.c)
+AC_INIT(wmbattery.c, 2.45)
 AC_CONFIG_HEADER(config.h)
 
 AC_CONFIG_AUX_DIR(autoconf)
+
+dnl Checks for the apm device other than /proc/apm.
+AC_CHECK_FILES(/dev/apm)
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -32,6 +35,10 @@ AC_CHECK_HEADERS(X11/xpm.h)
 AC_CHECK_HEADERS(X11/extensions/shape.h)
 AC_CHECK_HEADERS(getopt.h)
 AC_CHECK_HEADERS(apm.h)
+dnl FreeBSD needs apm_bios.h
+AC_CHECK_HEADERS(machine/apm_bios.h)
+dnl NetBSD and OpenBSD need apmvar.h
+AC_CHECK_HEADERS(i386/apmvar.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
