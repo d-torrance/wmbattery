@@ -1,3 +1,10 @@
+wmbattery (2.45-2) UNRELEASED; urgency=medium
+
+  * debian/control
+    - Set Build-Depends on libapm-dev to [linux-any].
+
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Tue, 07 Oct 2014 15:21:05 -0500
+
 wmbattery (2.45-1) unstable; urgency=medium
 
   * New upstream release.
