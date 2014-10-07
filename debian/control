@@ -1,7 +1,7 @@
 Source: wmbattery
 Section: x11
 Priority: extra
-Build-Depends: debhelper (>= 9), libxext-dev, libxpm-dev, dh-autoreconf, libapm-dev, libupower-glib-dev
+Build-Depends: debhelper (>= 9), libxext-dev, libxpm-dev, dh-autoreconf, libapm-dev [linux-any], libupower-glib-dev
 Maintainer: Doug Torrance <dtorrance@monmouthcollege.edu>
 Standards-Version: 3.9.6
 Homepage: http://windowmaker.org/dockapps/?name=wmbattery
