@@ -1,3 +1,10 @@
+wmbattery (2.45-3) UNRELEASED; urgency=medium
+
+  * debian/rules
+    - Fix rename syntax error in get-orig-source target.
+
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Mon, 17 Nov 2014 11:21:54 -0600
+
 wmbattery (2.45-2) unstable; urgency=medium
 
   * debian/control
