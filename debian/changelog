@@ -1,9 +1,12 @@
-wmbattery (2.45-3) UNRELEASED; urgency=medium
+wmbattery (2.46-1) unstable; urgency=medium
 
+  * New upstream release.
+  * debian/control
+    - Split Build-Depends into two lines for readability.
   * debian/rules
     - Fix rename syntax error in get-orig-source target.
 
- -- Doug Torrance <dtorrance@monmouthcollege.edu>  Mon, 17 Nov 2014 11:21:54 -0600
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Sat, 17 Jan 2015 18:04:29 -0600
 
 wmbattery (2.45-2) unstable; urgency=medium
 
