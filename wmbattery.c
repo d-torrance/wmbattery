@@ -40,6 +40,7 @@
 #endif
 
 #include "mask.xbm"
+#include "mask_nodial.xbm"
 #include "sonypi.h"
 #include "acpi.h"
 #ifdef HAL
@@ -55,7 +56,7 @@ int screen;
 XpmIcon icon;
 Display *display;
 GC NormalGC;
-int pos[2] = {0, 0};
+char *user_geom = NULL;
 
 #ifdef HAVE__DEV_APM
 #define APM_STATUS_FILE "/dev/apm"
@@ -83,6 +84,7 @@ int delay = 0;
 int always_estimate_remaining = 0;
 int granularity_estimate_remaining = 1;
 int initial_state = WithdrawnState;
+int use_dial = 1;
 
 signed int low_pct = -1;
 signed int critical_pct = -1;
@@ -376,17 +378,16 @@ char *parse_commandline(int argc, char *argv[])
 {
 	int c = 0;
 	char *ret = NULL;
-	char *s;
 
 	while (c != -1) {
-		c = getopt(argc, argv, "hd:g:if:b:w:c:l:es:a:x:v");
+		c = getopt(argc, argv, "hd:g:if:b:w:c:l:es:a:x:vn");
 		switch (c) {
 		case 'h':
 			printf("Usage: wmbattery [options]\n");
 			printf("\t-d <display>\tselects target display\n");
 			printf("\t-h\t\tdisplay this help\n");
-			printf("\t-g +x+y\t\tposition of the window\n");
-			printf("\t-i start\n");
+			printf("\t-g {+-}x{+-}y\tposition of the window\n");
+			printf("\t-i\t\tdisplay as icon\n");
 			printf("\t-b num\t\tnumber of battery to display\n");
 			printf("\t-w secs\t\tseconds between updates\n");
 			printf("\t-l percent\tlow percentage\n");
@@ -395,6 +396,7 @@ char *parse_commandline(int argc, char *argv[])
 			printf("\t-s granularity\tignore fluctuations less than granularity%% (implies -e)\n");
 			printf("\t-a file\t\twhen critical send file to /dev/audio\n");
 			printf("\t-x command\twhen critical execute this command\n");
+			printf("\t-n\t\tdisable dial graphic\n");
 			printf("\t-v\t\tdisplay version number\n");
 			exit(0);
 			break;
@@ -402,15 +404,7 @@ char *parse_commandline(int argc, char *argv[])
 			ret = strdup(optarg);
 			break;
 		case 'g':
-			s = strtok(optarg, "+");
-			if (s) {
-				pos[0] = atoi(s);
-				s = strtok(NULL, "+");
-				if (s)
-					pos[1] = atoi(s);
-				else
-					pos[0] = 0;
-			}
+			user_geom = strdup(optarg);
 			break;
 		case 'i':
 			initial_state = IconicState;
@@ -444,6 +438,9 @@ char *parse_commandline(int argc, char *argv[])
 			printf("wmbattery "PACKAGE_VERSION"\n");
 			exit(0);
 			break;
+		case 'n':
+			use_dial = 0;
+			break;
 		}
 	}
 
@@ -474,14 +471,12 @@ void make_window(char *display_name, int argc, char *argv[])
 	sizehints.flags = USSize | USPosition;
 	sizehints.x = 0;
 	sizehints.y = 0;
-	XWMGeometry(display, screen, "", NULL, borderwidth,
+	XWMGeometry(display, screen, user_geom, NULL, borderwidth,
 		    &sizehints, &sizehints.x, &sizehints.y,
 		    &sizehints.width, &sizehints.height, &dummy);
 
 	sizehints.width = 64;
 	sizehints.height = 64;
-	sizehints.x = pos[0];
-	sizehints.y = pos[1];
 	back_pix = WhitePixel(display, screen);
 	fore_pix = BlackPixel(display, screen);
 	win = XCreateSimpleWindow(display, root, sizehints.x, sizehints.y,
@@ -511,8 +506,12 @@ void make_window(char *display_name, int argc, char *argv[])
 			     GCForeground | GCBackground | GCGraphicsExposures,
 			     &gcv);
 
-	pixmask = XCreateBitmapFromData(display, win, mask_bits,
+	if (use_dial)
+		pixmask = XCreateBitmapFromData(display, win, mask_bits,
 					mask_width, mask_height);
+	else
+		pixmask = XCreateBitmapFromData(display, win, mask_nodial_bits,
+					mask_nodial_width, mask_nodial_height);
 	XShapeCombineMask(display, win, ShapeBounding, 0, 0,
 			  pixmask, ShapeSet);
 	XShapeCombineMask(display, iconwin, ShapeBounding, 0, 0,
