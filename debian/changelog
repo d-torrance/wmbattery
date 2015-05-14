@@ -1,3 +1,15 @@
+wmbattery (2.48-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches/clean_config.h.in.patch
+    - New patch; remove file created by autoheader to avoid dpkg_source error.
+  * debian/patches/escape_manpage_hyphens.patch
+    - Remove patch; applied upstream.
+  * debian/control
+    - Tidy using wrap-and-sort.
+
+ -- Doug Torrance <dtorrance@monmouthcollege.edu>  Thu, 14 May 2015 10:06:49 -0500
+
 wmbattery (2.47-1) unstable; urgency=medium
 
   * New upstream release.
