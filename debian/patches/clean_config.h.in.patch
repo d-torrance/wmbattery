@@ -1,0 +1,18 @@
+Description: Add config.h.in to `make distclean`.
+ Note that dh_auto_clean results in a call to autoheader, which creates
+ config.h.in.  If this isn't then removed, we get a dpkg-source error.
+Author: Doug Torrance <dtorrance@monmouthcollege.edu>
+Last-Update: 2015-05-14
+
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,8 @@
+ 	rm -f wmbattery *.o
+ 
+ distclean: clean
+-	rm -f config.status config.cache config.log makeinfo config.h configure
++	rm -f config.status config.cache config.log makeinfo config.h \
++		config.h.in configure
+ 
+ install: all
+ 	$(INSTALL) -d $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir) $(DESTDIR)$(icondir)
